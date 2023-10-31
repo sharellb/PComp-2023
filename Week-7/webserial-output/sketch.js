@@ -40,7 +40,7 @@ function mouseDragged() {
   // map the mouseY to a range from 0 to 255:
   outByte = byte(map(mouseY, 0, height, 0, 255));
   // send it out the serial port:
-  serial.write(outByte);
+  serial.println(outByte);
 }
 
 function keyPressed() {
