@@ -90,8 +90,13 @@ function makePortButton() {
   // read any incoming data as a string
   // (assumes a newline at the end of it):
   function serialEvent() {
-    inData = Number(serial.read());
-    console.log(inData);
+    // read a string from the serial port:
+    var inString = serial.readLine();
+    // check to see that there's actually a string there:
+    if (inString) {
+    // convert it to a number:
+    inData = Number(inString);
+    }
   }
    
   // try to connect if a new serial port 
