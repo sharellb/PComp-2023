@@ -29,7 +29,9 @@ function setup() {
 }
  
 function draw() {
-  
+  background(0);
+  fill(255);
+  text("sensor value: " + inData, 30, 50);
 }
 
 // if there's no port selected, 
