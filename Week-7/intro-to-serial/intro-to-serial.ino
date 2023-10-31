@@ -5,5 +5,7 @@ void setup() {
  
 void loop() {
    int analogValue = analogRead(A0);
-   Serial.println(analogValue);
+   int mappedValue = map(analogValue, 0, 1023, 0, 255);
+   Serial.println(mappedValue);
 }
+﻿
