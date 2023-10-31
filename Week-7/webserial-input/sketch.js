@@ -1,5 +1,7 @@
 // variable to hold an instance of the p5.webserial library:
 const serial = new p5.WebSerial();
+let xPos = 0;                     // x position of the graph
+
  
 // HTML button object:
 let portButton;
@@ -8,6 +10,7 @@ let outByte = 0;              // for outgoing data
  
 function setup() {
   createCanvas(400, 300);          // make the canvas
+  background(0x08, 0x16, 0x40);
   // check to see if serial is available:
   if (!navigator.serial) {
     alert("WebSerial is not supported in this browser. Try Chrome or MS Edge.");
@@ -29,9 +32,24 @@ function setup() {
 }
  
 function draw() {
-  background(0);
-  fill(255);
-  text("sensor value: " + inData, 30, 50);
+  graphData(inData);
+}
+
+function graphData(newData) {
+    // map the range of the input to the window height:
+  var yPos = map(newData, 0, 255, 0, height);
+  // draw the line in a pretty color:
+  stroke(0xA8, 0xD9, 0xA7);
+  line(xPos, height, xPos, height - yPos);
+  // at the edge of the screen, go back to the beginning:
+  if (xPos >= width) {
+    xPos = 0;
+    // clear the screen by resetting the background:
+    background(0x08, 0x16, 0x40);
+  } else {
+    // increment the horizontal position for the next reading:
+    xPos++;
+  }
 }
 
 // if there's no port selected, 
