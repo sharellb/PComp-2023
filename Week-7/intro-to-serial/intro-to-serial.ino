@@ -8,4 +8,3 @@ void loop() {
    int mappedValue = map(analogValue, 0, 1023, 0, 255);
    Serial.println(mappedValue);
 }
-﻿
