@@ -1,27 +1,22 @@
-const int switchPin = 2;      // digital input
 int sensorValue;
+int prevSensor = 0;
  
 void setup() {
    Serial.begin(9600);
+   pinMode(2, INPUT);
 }
 
 void loop() {
     // read the incoming byte:
-    int inByte = Serial.read();
+    // int inByte = Serial.read();
     // read the sensor:
-    sensorValue = analogRead(A0);
-    // print the results:
-    Serial.print(sensorValue);
-    Serial.print(",");
 
-    // read the sensor:
-    sensorValue = analogRead(A1);
-    // print the results:
-    Serial.print(sensorValue);
-    Serial.print(",");
+    sensorValue = digitalRead(2);
 
-    // read the sensor:
-    sensorValue = digitalRead(switchPin);
     // print the results:
-    Serial.println(sensorValue);
+    if (sensorValue == HIGH) {
+      Serial.write(1);
+    } else if (sensorValue == LOW) {
+      Serial.println(0);
+    }
 }
